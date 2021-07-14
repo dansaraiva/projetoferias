@@ -7,6 +7,8 @@ package br.com.ferias.view;
 
 import br.com.ferias.dao.ClienteDAO;
 import br.com.ferias.model.Cliente;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +23,31 @@ public class frmCliente extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void listar(){
+        ClienteDAO dao = new ClienteDAO();
+        List<Cliente> clientes = dao.listarClientes();
+        DefaultTableModel dados = (DefaultTableModel)tbClientes.getModel();
+        dados.setNumRows(0);
+        
+        for (Cliente cliente : clientes) {
+            dados.addRow(new Object[]{
+              cliente.getId(),
+              cliente.getNome(),
+              cliente.getRg(),
+              cliente.getCpf(),
+              cliente.getEmail(),
+              cliente.getTelefone(),
+              cliente.getCelular(),
+              cliente.getCep(),
+              cliente.getEndereco(),
+              cliente.getNumero(),
+              cliente.getComplemento(),
+              cliente.getBairro(),
+              cliente.getCidade(),
+              cliente.getEstado()           
+            });
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,7 +96,7 @@ public class frmCliente extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbClientes = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
@@ -78,6 +105,11 @@ public class frmCliente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de vendas");
         setBackground(new java.awt.Color(255, 255, 255));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 0));
 
@@ -109,6 +141,7 @@ public class frmCliente extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel2.setText("Código:");
 
+        jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
@@ -332,7 +365,7 @@ public class frmCliente extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jButton1.setText("Pesquisar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -343,7 +376,7 @@ public class frmCliente extends javax.swing.JFrame {
                 "Código", "Nome", "RG", "CPF", "Email", "Telefone", "Celular", "CEP", "Endereço", "Nº", "Complemento", "Bairro", "Cidade", "UF"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbClientes);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -447,6 +480,11 @@ public class frmCliente extends javax.swing.JFrame {
         dao.salvarCliente(cli);        
     }//GEN-LAST:event_btSalvarActionPerformed
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        listar();        
+    }//GEN-LAST:event_formWindowActivated
+
     /**
      * @param args the command line arguments
      */
@@ -512,9 +550,9 @@ public class frmCliente extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTable tbClientes;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JFormattedTextField txtCelular;
     private javax.swing.JFormattedTextField txtCep;
