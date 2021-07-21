@@ -48,7 +48,52 @@ public class ClienteDAO {
             JOptionPane.showMessageDialog(null, "Algo aconteceu: \n" + e);
         }
     }
+    public void editarCliente(Cliente cli){
+        try {
+            String sql = "UPDATE tb_clientes SET nome=?, rg=?, cpf=?, email=?, telefone=?, celular=?,"
+                    + "cep=?, endereco=?, numero=?, complemento=?, bairro=?, cidade=?, estado=?"
+                    + " WHERE id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, cli.getNome());
+            stmt.setString(2, cli.getRg());
+            stmt.setString(3, cli.getCpf());
+            stmt.setString(4, cli.getEmail());
+            stmt.setString(5, cli.getTelefone());
+            stmt.setString(6, cli.getCelular());
+            stmt.setString(7, cli.getCep());
+            stmt.setString(8, cli.getEndereco());
+            stmt.setInt(9, cli.getNumero());
+            stmt.setString(10, cli.getComplemento());
+            stmt.setString(11, cli.getBairro());
+            stmt.setString(12, cli.getCidade());
+            stmt.setString(13, cli.getEstado());
+            
+            stmt.setInt(14, cli.getId());
 
+            stmt.execute();
+            stmt.close();
+
+            JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Algo aconteceu: \n" + e);
+        }
+    }
+
+    public void excluirCliente(Cliente cli){
+         try {
+            String sql = "DELETE FROM tb_clientes WHERE id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);            
+            
+            stmt.setInt(1, cli.getId());
+
+            stmt.execute();
+            stmt.close();
+
+            JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Algo aconteceu: \n" + e);
+        }
+    }
     public List<Cliente> listarClientes(){
         try {
             List<Cliente> clientes = new ArrayList<>();
