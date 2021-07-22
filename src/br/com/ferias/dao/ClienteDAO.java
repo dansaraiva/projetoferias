@@ -128,6 +128,82 @@ public class ClienteDAO {
             JOptionPane.showMessageDialog(null, "Erro ao executar consulta: \n"+e);
             return null;
         }
+        
+    }
+    public List<Cliente> buscarClientePorNome(String nome) {
+        try {
+            List<Cliente> clientes = new ArrayList<>();
+
+            String sql = "SELECT * FROM tb_clientes WHERE nome LIKE ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, nome);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Cliente cli = new Cliente();
+                cli.setId(rs.getInt("id"));
+                cli.setNome(rs.getString("nome"));
+                cli.setRg(rs.getString("rg"));
+                cli.setCpf(rs.getString("cpf"));
+                cli.setEmail(rs.getString("email"));
+                cli.setTelefone(rs.getString("telefone"));
+                cli.setCelular(rs.getString("celular"));
+                cli.setCep(rs.getString("cep"));
+                cli.setEndereco(rs.getString("endereco"));
+                cli.setNumero(rs.getInt("numero"));
+                cli.setComplemento(rs.getString("complemento"));
+                cli.setBairro(rs.getString("bairro"));
+                cli.setCidade(rs.getString("cidade"));
+                cli.setEstado(rs.getString("estado"));
+
+                clientes.add(cli);
+            }
+
+            return clientes;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao executar consulta: \n" + e);
+            return null;
+        }
+
+    }
+    
+    public Cliente consultarCliente(String nome){
+        try {           
+            String sql = "SELECT * FROM tb_clientes WHERE nome = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, nome);
+
+            ResultSet rs = stmt.executeQuery();
+        
+            Cliente cli = new Cliente();
+
+            if (rs.next()) {
+                cli.setId(rs.getInt("id"));
+                cli.setNome(rs.getString("nome"));
+                cli.setRg(rs.getString("rg"));
+                cli.setCpf(rs.getString("cpf"));
+                cli.setEmail(rs.getString("email"));
+                cli.setTelefone(rs.getString("telefone"));
+                cli.setCelular(rs.getString("celular"));
+                cli.setCep(rs.getString("cep"));
+                cli.setEndereco(rs.getString("endereco"));
+                cli.setNumero(rs.getInt("numero"));
+                cli.setComplemento(rs.getString("complemento"));
+                cli.setBairro(rs.getString("bairro"));
+                cli.setCidade(rs.getString("cidade"));
+                cli.setEstado(rs.getString("estado"));
+               
+            }
+
+            return cli;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao executar consulta: \n" + e);
+            return null;
+        }
+
     }
 
     
