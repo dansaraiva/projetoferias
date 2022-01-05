@@ -3,8 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Daniel/Documents/NetBeansProjects/ferias/src/br/com/ferias/jdbc/ConnectionFactory.java</file>
             <file>file:/C:/Users/Daniel/Documents/NetBeansProjects/ferias/src/br/com/ferias/model/Utilitarios.java</file>
+            <file>file:/C:/Users/Daniel/Documents/NetBeansProjects/ferias/src/br/com/ferias/view/frmFuncionario.java</file>
+            <file>file:/C:/Users/Daniel/Documents/NetBeansProjects/ferias/src/br/com/ferias/model/Cliente.java</file>
+            <file>file:/C:/Users/Daniel/Documents/NetBeansProjects/ferias/src/br/com/ferias/dao/FuncionarioDAO.java</file>
+            <file>file:/C:/Users/Daniel/Documents/NetBeansProjects/ferias/src/br/com/ferias/model/WebServiceCep.java</file>
+            <file>file:/C:/Users/Daniel/Documents/NetBeansProjects/ferias/src/br/com/ferias/jdbc/TestaConexao.java</file>
             <file>file:/C:/Users/Daniel/Documents/NetBeansProjects/ferias/src/br/com/ferias/view/frmCliente.java</file>
+            <file>file:/C:/Users/Daniel/Documents/NetBeansProjects/ferias/src/br/com/ferias/model/Funcionario.java</file>
             <file>file:/C:/Users/Daniel/Documents/NetBeansProjects/ferias/src/br/com/ferias/dao/ClienteDAO.java</file>
         </group>
     </open-files>

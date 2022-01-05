@@ -118,7 +118,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="pClientes">
+        <Container class="javax.swing.JPanel" name="pFuncionarios">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -207,7 +207,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="cbEstado1" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbAcesso" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -297,7 +297,7 @@
                           <Component id="txtCargo" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbEstado1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbAcesso" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -601,7 +601,7 @@
                 <Property name="text" type="java.lang.String" value="N&#xed;vel Acesso:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cbEstado1">
+            <Component class="javax.swing.JComboBox" name="cbAcesso">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="sansserif" size="14" style="0"/>

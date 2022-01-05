@@ -6,7 +6,9 @@
 package br.com.ferias.view;
 
 import br.com.ferias.dao.ClienteDAO;
+import br.com.ferias.dao.FuncionarioDAO;
 import br.com.ferias.model.Cliente;
+import br.com.ferias.model.Funcionario;
 import br.com.ferias.model.Utilitarios;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -25,31 +27,35 @@ public class frmFuncionario extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void listar(){
-        ClienteDAO dao = new ClienteDAO();
-        List<Cliente> clientes = dao.listarClientes();
-        DefaultTableModel dados = (DefaultTableModel)tbFuncionarios.getModel();
+    public void listar() {
+        FuncionarioDAO dao = new FuncionarioDAO();
+        List<Funcionario> funcionarios = dao.listarFuncionarios();
+        DefaultTableModel dados = (DefaultTableModel) tbFuncionarios.getModel();
         dados.setNumRows(0);
-        
-        for (Cliente cliente : clientes) {
+
+        for (Funcionario funcionario : funcionarios) {
             dados.addRow(new Object[]{
-              cliente.getId(),
-              cliente.getNome(),
-              cliente.getRg(),
-              cliente.getCpf(),
-              cliente.getEmail(),
-              cliente.getTelefone(),
-              cliente.getCelular(),
-              cliente.getCep(),
-              cliente.getEndereco(),
-              cliente.getNumero(),
-              cliente.getComplemento(),
-              cliente.getBairro(),
-              cliente.getCidade(),
-              cliente.getEstado()           
+                funcionario.getId(),
+                funcionario.getNome(),
+                funcionario.getRg(),
+                funcionario.getCpf(),
+                funcionario.getEmail(),
+                funcionario.getSenha(),
+                funcionario.getCargo(),
+                funcionario.getNivelAcesso(),
+                funcionario.getTelefone(),
+                funcionario.getCelular(),
+                funcionario.getCep(),
+                funcionario.getEndereco(),
+                funcionario.getNumero(),
+                funcionario.getComplemento(),
+                funcionario.getBairro(),
+                funcionario.getCidade(),
+                funcionario.getEstado()
             });
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,7 +68,7 @@ public class frmFuncionario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        pClientes = new javax.swing.JPanel();
+        pFuncionarios = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -98,7 +104,7 @@ public class frmFuncionario extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         txtCargo = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        cbEstado1 = new javax.swing.JComboBox<>();
+        cbAcesso = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         txtPesquisarNome = new javax.swing.JTextField();
@@ -144,7 +150,7 @@ public class frmFuncionario extends javax.swing.JFrame {
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        pClientes.setBackground(new java.awt.Color(255, 255, 255));
+        pFuncionarios.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel2.setText("Código:");
@@ -261,18 +267,18 @@ public class frmFuncionario extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel19.setText("Nível Acesso:");
 
-        cbEstado1.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        cbEstado1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuário", "Admin" }));
+        cbAcesso.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        cbAcesso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuário", "Admin" }));
 
-        javax.swing.GroupLayout pClientesLayout = new javax.swing.GroupLayout(pClientes);
-        pClientes.setLayout(pClientesLayout);
-        pClientesLayout.setHorizontalGroup(
-            pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pClientesLayout.createSequentialGroup()
+        javax.swing.GroupLayout pFuncionariosLayout = new javax.swing.GroupLayout(pFuncionarios);
+        pFuncionarios.setLayout(pFuncionariosLayout);
+        pFuncionariosLayout.setHorizontalGroup(
+            pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pFuncionariosLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pClientesLayout.createSequentialGroup()
-                        .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pFuncionariosLayout.createSequentialGroup()
+                        .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5)
@@ -281,7 +287,7 @@ public class frmFuncionario extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtRg, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -291,14 +297,14 @@ public class frmFuncionario extends javax.swing.JFrame {
                             .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(btBuscaCliente))
-                    .addGroup(pClientesLayout.createSequentialGroup()
+                    .addGroup(pFuncionariosLayout.createSequentialGroup()
                         .addComponent(jLabel17)
                         .addGap(18, 18, 18)
                         .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addComponent(jLabel11)
                     .addComponent(jLabel13)
@@ -306,109 +312,109 @@ public class frmFuncionario extends javax.swing.JFrame {
                     .addComponent(jLabel15)
                     .addComponent(jLabel18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pClientesLayout.createSequentialGroup()
-                        .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pFuncionariosLayout.createSequentialGroup()
+                        .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pClientesLayout.createSequentialGroup()
+                            .addGroup(pFuncionariosLayout.createSequentialGroup()
                                 .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pClientesLayout.createSequentialGroup()
+                            .addGroup(pFuncionariosLayout.createSequentialGroup()
                                 .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(99, 99, 99))
-                    .addGroup(pClientesLayout.createSequentialGroup()
+                    .addGroup(pFuncionariosLayout.createSequentialGroup()
                         .addComponent(txtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbEstado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(82, 82, 82))))
         );
-        pClientesLayout.setVerticalGroup(
-            pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pClientesLayout.createSequentialGroup()
+        pFuncionariosLayout.setVerticalGroup(
+            pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pFuncionariosLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btBuscaCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pClientesLayout.createSequentialGroup()
-                        .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pFuncionariosLayout.createSequentialGroup()
+                        .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
                             .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
                             .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)
                             .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel14))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15)
                             .addComponent(jLabel16)
                             .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pClientesLayout.createSequentialGroup()
-                        .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(pFuncionariosLayout.createSequentialGroup()
+                        .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel17)
                         .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel18)
                     .addComponent(txtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel19)
-                        .addComponent(cbEstado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pClientesLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pFuncionariosLayout.createSequentialGroup()
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
 
-        jTabbedPane1.addTab("Dados Pessoais", pClientes);
+        jTabbedPane1.addTab("Dados Pessoais", pFuncionarios);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -543,31 +549,36 @@ public class frmFuncionario extends javax.swing.JFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         // TODO add your handling code here:
-        Cliente cli = new Cliente();
-        
-        cli.setNome(txtNome.getText());
-        cli.setRg(txtRg.getText());
-        cli.setCpf(txtCpf.getText());
-        cli.setEmail(txtEmail.getText());
-        cli.setTelefone(txtTelefone.getText());
-        cli.setCelular(txtCelular.getText());
-        cli.setCep(txtCep.getText());
-        cli.setEndereco(txtEndereco.getText());
-        cli.setComplemento(txtComplemento.getText());
-        cli.setNumero(Integer.parseInt(txtNumero.getText()));
-        cli.setBairro(txtBairro.getText());
-        cli.setCidade(txtCidade.getText());
-        cli.setEstado(cbEstado.getSelectedItem().toString());
-        
-        ClienteDAO dao = new ClienteDAO();
-        dao.salvarCliente(cli);     
-        
-        new Utilitarios().limpaTela(pClientes);
+        Funcionario fun = new Funcionario();
+
+        fun.setNome(txtNome.getText());
+        fun.setRg(txtRg.getText());
+        fun.setCpf(txtCpf.getText());
+        fun.setEmail(txtEmail.getText());
+
+        fun.setSenha(txtSenha.getText());
+        fun.setCargo(txtCargo.getText());
+        fun.setNivelAcesso(cbAcesso.getSelectedItem().toString());
+
+        fun.setTelefone(txtTelefone.getText());
+        fun.setCelular(txtCelular.getText());
+        fun.setCep(txtCep.getText());
+        fun.setEndereco(txtEndereco.getText());
+        fun.setComplemento(txtComplemento.getText());
+        fun.setNumero(Integer.parseInt(txtNumero.getText()));
+        fun.setBairro(txtBairro.getText());
+        fun.setCidade(txtCidade.getText());
+        fun.setEstado(cbEstado.getSelectedItem().toString());
+
+        FuncionarioDAO dao = new FuncionarioDAO();
+        dao.salvarFuncionario(fun);
+
+        new Utilitarios().limpaTela(pFuncionarios);
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        listar();        
+        listar();
     }//GEN-LAST:event_formWindowActivated
 
     private void tbFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbFuncionariosMouseClicked
@@ -578,23 +589,28 @@ public class frmFuncionario extends javax.swing.JFrame {
         txtRg.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 2).toString());
         txtCpf.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 3).toString());
         txtEmail.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 4).toString());
-        txtTelefone.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 5).toString());
-        txtCelular.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 6).toString());
-        txtCep.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 7).toString());
-        txtEndereco.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 8).toString());
-        txtNumero.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 9).toString());
-        txtComplemento.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 10).toString());
-        txtBairro.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 11).toString());
-        txtCidade.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 12).toString());
-        cbEstado.setSelectedItem(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 13).toString());
-        
-        
+
+        txtSenha.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 5).toString());
+        txtCargo.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 6).toString());
+        cbAcesso.setSelectedItem(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 7).toString());
+
+        txtTelefone.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 8).toString());
+        txtCelular.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 9).toString());
+        txtCep.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 10).toString());
+        txtEndereco.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 11).toString());
+        txtNumero.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 12).toString());
+        txtComplemento.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 13).toString());
+        txtBairro.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 14).toString());
+        txtCidade.setText(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 15).toString());
+        cbEstado.setSelectedItem(tbFuncionarios.getValueAt(tbFuncionarios.getSelectedRow(), 16).toString());
+
+
     }//GEN-LAST:event_tbFuncionariosMouseClicked
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         // TODO add your handling code here:
         Cliente cli = new Cliente();
-        
+
         cli.setNome(txtNome.getText());
         cli.setRg(txtRg.getText());
         cli.setCpf(txtCpf.getText());
@@ -608,35 +624,35 @@ public class frmFuncionario extends javax.swing.JFrame {
         cli.setBairro(txtBairro.getText());
         cli.setCidade(txtCidade.getText());
         cli.setEstado(cbEstado.getSelectedItem().toString());
-        
+
         cli.setId(Integer.parseInt(txtCodigo.getText()));
-        
+
         ClienteDAO dao = new ClienteDAO();
-        dao.editarCliente(cli);  
-        
-        new Utilitarios().limpaTela(pClientes);
+        dao.editarCliente(cli);
+
+        new Utilitarios().limpaTela(pFuncionarios);
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         // TODO add your handling code here:
-        Cliente cli = new Cliente();       
-        
+        Cliente cli = new Cliente();
+
         cli.setId(Integer.parseInt(txtCodigo.getText()));
-        
+
         ClienteDAO dao = new ClienteDAO();
         dao.excluirCliente(cli);
-      
-        new Utilitarios().limpaTela(pClientes);
+
+        new Utilitarios().limpaTela(pFuncionarios);
 
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btPesquisarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarTodosActionPerformed
         // TODO add your handling code here:
-        String nome = "%"+txtPesquisarNome.getText()+"%";
-        
+        String nome = "%" + txtPesquisarNome.getText() + "%";
+
         ClienteDAO dao = new ClienteDAO();
         List<Cliente> clientes = dao.buscarClientePorNome(nome);
-        
+
         DefaultTableModel dados = (DefaultTableModel) tbFuncionarios.getModel();
         dados.setNumRows(0);
 
@@ -663,13 +679,13 @@ public class frmFuncionario extends javax.swing.JFrame {
     private void btBuscaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscaClienteActionPerformed
         // TODO add your handling code here:
         String nome = txtNome.getText();
-        
+
         Cliente cli = new Cliente();
         ClienteDAO dao = new ClienteDAO();
-        
+
         cli = dao.consultarCliente(nome);
-        
-        if(cli.getNome() != null){
+
+        if (cli.getNome() != null) {
             txtCodigo.setText(String.valueOf(cli.getId()));
             txtNome.setText(cli.getNome());
             txtRg.setText(cli.getRg());
@@ -684,16 +700,16 @@ public class frmFuncionario extends javax.swing.JFrame {
             txtBairro.setText(cli.getBairro());
             txtCidade.setText(cli.getCidade());
             cbEstado.setSelectedItem(cli.getEstado());
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Cliente não encontrado!!");
         }
-        
-        
+
+
     }//GEN-LAST:event_btBuscaClienteActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:
-        new Utilitarios().limpaTela(pClientes);
+        new Utilitarios().limpaTela(pFuncionarios);
 
     }//GEN-LAST:event_btNovoActionPerformed
 
@@ -740,8 +756,8 @@ public class frmFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton btNovo;
     private javax.swing.JButton btPesquisarTodos;
     private javax.swing.JButton btSalvar;
+    private javax.swing.JComboBox<String> cbAcesso;
     private javax.swing.JComboBox<String> cbEstado;
-    private javax.swing.JComboBox<String> cbEstado1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -766,7 +782,7 @@ public class frmFuncionario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JPanel pClientes;
+    private javax.swing.JPanel pFuncionarios;
     private javax.swing.JTable tbFuncionarios;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCargo;
