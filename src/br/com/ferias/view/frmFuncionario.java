@@ -97,7 +97,7 @@ public class frmFuncionario extends javax.swing.JFrame {
         txtCidade = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         cbEstado = new javax.swing.JComboBox<>();
-        btBuscaCliente = new javax.swing.JButton();
+        btBuscaFuncionario = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel17 = new javax.swing.JLabel();
         txtSenha = new javax.swing.JPasswordField();
@@ -244,11 +244,11 @@ public class frmFuncionario extends javax.swing.JFrame {
         cbEstado.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CE", "PE", "BA", "JP", "RN", "MA" }));
 
-        btBuscaCliente.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        btBuscaCliente.setText("Pesquisar");
-        btBuscaCliente.addActionListener(new java.awt.event.ActionListener() {
+        btBuscaFuncionario.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        btBuscaFuncionario.setText("Pesquisar");
+        btBuscaFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBuscaClienteActionPerformed(evt);
+                btBuscaFuncionarioActionPerformed(evt);
             }
         });
 
@@ -296,7 +296,7 @@ public class frmFuncionario extends javax.swing.JFrame {
                             .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(btBuscaCliente))
+                        .addComponent(btBuscaFuncionario))
                     .addGroup(pFuncionariosLayout.createSequentialGroup()
                         .addComponent(jLabel17)
                         .addGap(18, 18, 18)
@@ -350,7 +350,7 @@ public class frmFuncionario extends javax.swing.JFrame {
                 .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btBuscaCliente))
+                    .addComponent(btBuscaFuncionario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pFuncionariosLayout.createSequentialGroup()
@@ -422,6 +422,11 @@ public class frmFuncionario extends javax.swing.JFrame {
         jLabel7.setText("Nome:");
 
         txtPesquisarNome.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        txtPesquisarNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPesquisarNomeKeyPressed(evt);
+            }
+        });
 
         btPesquisarTodos.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         btPesquisarTodos.setText("Pesquisar");
@@ -609,38 +614,43 @@ public class frmFuncionario extends javax.swing.JFrame {
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         // TODO add your handling code here:
-        Cliente cli = new Cliente();
+        Funcionario fun = new Funcionario();
 
-        cli.setNome(txtNome.getText());
-        cli.setRg(txtRg.getText());
-        cli.setCpf(txtCpf.getText());
-        cli.setEmail(txtEmail.getText());
-        cli.setTelefone(txtTelefone.getText());
-        cli.setCelular(txtCelular.getText());
-        cli.setCep(txtCep.getText());
-        cli.setEndereco(txtEndereco.getText());
-        cli.setComplemento(txtComplemento.getText());
-        cli.setNumero(Integer.parseInt(txtNumero.getText()));
-        cli.setBairro(txtBairro.getText());
-        cli.setCidade(txtCidade.getText());
-        cli.setEstado(cbEstado.getSelectedItem().toString());
+        fun.setNome(txtNome.getText());
+        fun.setRg(txtRg.getText());
+        fun.setCpf(txtCpf.getText());
+        fun.setEmail(txtEmail.getText());
 
-        cli.setId(Integer.parseInt(txtCodigo.getText()));
+        fun.setSenha(txtSenha.getText());
+        fun.setCargo(txtCargo.getText());
+        fun.setNivelAcesso(cbAcesso.getSelectedItem().toString());
 
-        ClienteDAO dao = new ClienteDAO();
-        dao.editarCliente(cli);
+        fun.setTelefone(txtTelefone.getText());
+        fun.setCelular(txtCelular.getText());
+        fun.setCep(txtCep.getText());
+        fun.setEndereco(txtEndereco.getText());
+        fun.setComplemento(txtComplemento.getText());
+        fun.setNumero(Integer.parseInt(txtNumero.getText()));
+        fun.setBairro(txtBairro.getText());
+        fun.setCidade(txtCidade.getText());
+        fun.setEstado(cbEstado.getSelectedItem().toString());
+
+        fun.setId(Integer.parseInt(txtCodigo.getText()));
+
+        FuncionarioDAO dao = new FuncionarioDAO();
+        dao.editarFuncionario(fun);
 
         new Utilitarios().limpaTela(pFuncionarios);
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         // TODO add your handling code here:
-        Cliente cli = new Cliente();
+        Funcionario fun = new Funcionario();
 
-        cli.setId(Integer.parseInt(txtCodigo.getText()));
+        fun.setId(Integer.parseInt(txtCodigo.getText()));
 
-        ClienteDAO dao = new ClienteDAO();
-        dao.excluirCliente(cli);
+        FuncionarioDAO dao = new FuncionarioDAO();
+        dao.excluirFuncionario(fun);
 
         new Utilitarios().limpaTela(pFuncionarios);
 
@@ -650,68 +660,109 @@ public class frmFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nome = "%" + txtPesquisarNome.getText() + "%";
 
-        ClienteDAO dao = new ClienteDAO();
-        List<Cliente> clientes = dao.buscarClientePorNome(nome);
+        FuncionarioDAO dao = new FuncionarioDAO();
+        List<Funcionario> funcionarios = dao.buscarFuncionarioPorNome(nome);
 
         DefaultTableModel dados = (DefaultTableModel) tbFuncionarios.getModel();
         dados.setNumRows(0);
 
-        for (Cliente cliente : clientes) {
+        for (Funcionario funcionario : funcionarios) {
             dados.addRow(new Object[]{
-                cliente.getId(),
-                cliente.getNome(),
-                cliente.getRg(),
-                cliente.getCpf(),
-                cliente.getEmail(),
-                cliente.getTelefone(),
-                cliente.getCelular(),
-                cliente.getCep(),
-                cliente.getEndereco(),
-                cliente.getNumero(),
-                cliente.getComplemento(),
-                cliente.getBairro(),
-                cliente.getCidade(),
-                cliente.getEstado()
+                funcionario.getId(),
+                funcionario.getNome(),
+                funcionario.getRg(),
+                funcionario.getCpf(),
+                funcionario.getEmail(),
+                funcionario.getSenha(),
+                funcionario.getCargo(),
+                funcionario.getNivelAcesso(),
+                funcionario.getTelefone(),
+                funcionario.getCelular(),
+                funcionario.getCep(),
+                funcionario.getEndereco(),
+                funcionario.getNumero(),
+                funcionario.getComplemento(),
+                funcionario.getBairro(),
+                funcionario.getCidade(),
+                funcionario.getEstado()
             });
         }
     }//GEN-LAST:event_btPesquisarTodosActionPerformed
 
-    private void btBuscaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscaClienteActionPerformed
+    private void btBuscaFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscaFuncionarioActionPerformed
         // TODO add your handling code here:
         String nome = txtNome.getText();
 
-        Cliente cli = new Cliente();
-        ClienteDAO dao = new ClienteDAO();
+        Funcionario fun = new Funcionario();
+        FuncionarioDAO dao = new FuncionarioDAO();
 
-        cli = dao.consultarCliente(nome);
+        fun = dao.consultarFuncionario(nome);
 
-        if (cli.getNome() != null) {
-            txtCodigo.setText(String.valueOf(cli.getId()));
-            txtNome.setText(cli.getNome());
-            txtRg.setText(cli.getRg());
-            txtCpf.setText(cli.getCpf());
-            txtEmail.setText(cli.getEmail());
-            txtTelefone.setText(cli.getTelefone());
-            txtCelular.setText(cli.getCelular());
-            txtCep.setText(cli.getCep());
-            txtEndereco.setText(cli.getEndereco());
-            txtNumero.setText(String.valueOf(cli.getNumero()));
-            txtComplemento.setText(cli.getComplemento());
-            txtBairro.setText(cli.getBairro());
-            txtCidade.setText(cli.getCidade());
-            cbEstado.setSelectedItem(cli.getEstado());
+        if (fun.getNome() != null) {
+            txtCodigo.setText(String.valueOf(fun.getId()));
+            txtNome.setText(fun.getNome());
+            txtRg.setText(fun.getRg());
+            txtCpf.setText(fun.getCpf());
+            txtEmail.setText(fun.getEmail());
+
+            txtSenha.setText(fun.getSenha());
+            txtCargo.setText(fun.getCargo());
+            cbAcesso.setSelectedItem(fun.getNivelAcesso());
+
+            txtTelefone.setText(fun.getTelefone());
+            txtCelular.setText(fun.getCelular());
+            txtCep.setText(fun.getCep());
+            txtEndereco.setText(fun.getEndereco());
+            txtNumero.setText(String.valueOf(fun.getNumero()));
+            txtComplemento.setText(fun.getComplemento());
+            txtBairro.setText(fun.getBairro());
+            txtCidade.setText(fun.getCidade());
+            cbEstado.setSelectedItem(fun.getEstado());
         } else {
-            JOptionPane.showMessageDialog(null, "Cliente não encontrado!!");
+            JOptionPane.showMessageDialog(null, "Funcionário não encontrado!!");
         }
 
 
-    }//GEN-LAST:event_btBuscaClienteActionPerformed
+    }//GEN-LAST:event_btBuscaFuncionarioActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:
         new Utilitarios().limpaTela(pFuncionarios);
 
     }//GEN-LAST:event_btNovoActionPerformed
+
+    private void txtPesquisarNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarNomeKeyPressed
+        // TODO add your handling code here:
+        String nome = "%" + txtPesquisarNome.getText() + "%";
+
+        FuncionarioDAO dao = new FuncionarioDAO();
+        List<Funcionario> funcionarios = dao.buscarFuncionarioPorNome(nome);
+
+        DefaultTableModel dados = (DefaultTableModel) tbFuncionarios.getModel();
+        dados.setNumRows(0);
+
+        for (Funcionario funcionario : funcionarios) {
+            dados.addRow(new Object[]{
+                funcionario.getId(),
+                funcionario.getNome(),
+                funcionario.getRg(),
+                funcionario.getCpf(),
+                funcionario.getEmail(),
+                funcionario.getSenha(),
+                funcionario.getCargo(),
+                funcionario.getNivelAcesso(),
+                funcionario.getTelefone(),
+                funcionario.getCelular(),
+                funcionario.getCep(),
+                funcionario.getEndereco(),
+                funcionario.getNumero(),
+                funcionario.getComplemento(),
+                funcionario.getBairro(),
+                funcionario.getCidade(),
+                funcionario.getEstado()
+            });
+        }
+    }//GEN-LAST:event_txtPesquisarNomeKeyPressed
 
     /**
      * @param args the command line arguments
@@ -750,7 +801,7 @@ public class frmFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btBuscaCliente;
+    private javax.swing.JButton btBuscaFuncionario;
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btNovo;
